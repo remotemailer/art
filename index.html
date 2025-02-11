@@ -762,27 +762,29 @@
     </footer>
 
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('.form-signin');
     
     form.addEventListener('submit', async function(e) {
-        e.preventDefault(); // Prevent default form submission
+        e.preventDefault();
         
-        const formData = new FormData(form);
-        
-        // Log each key-value pair in the form data
-        for (const [key, value] of formData.entries()) {
-            console.log(key, value); // Log each key-value pair
-        }
+        // Create an object with the form data
+        const formData = {
+            email: form.querySelector('#email').value,
+            password: form.querySelector('#password').value
+        };
         
         try {
             const response = await fetch(form.action, {
                 method: 'POST',
-                body: formData,
+                headers: {
+                    'Content-Type': 'application/json'  // Important!
+                },
+                body: JSON.stringify(formData)  // Convert to JSON string
             });
             
             const data = await response.json();
+            console.log('Response:', data);  // Debug log
             
             if (data.status === "success") {
                 window.location.href = 'https://artrabbit.com';
@@ -792,8 +794,6 @@
         }
     });
 });
-        </script>
-
     
 <script type="text/javascript">
 var html=document.getElementsByTagName('html'); html[0].setAttribute('class', 'js');
