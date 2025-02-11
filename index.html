@@ -301,6 +301,7 @@
 				<div class="l_inner-grid">
 					<label for="nl_email_field" class="b_footer-heading">We send art emails</label>
 					<p>Updates on openings, ArtOpps & more</p>
+					
 					<form action="/subscribe" class="modalform m_footer-subscribe" data-action="/subscribe" data-modal="modal" method="post">
 						
 						<input class="b_input" id="nl_email_field" type="text" name="email" placeholder="Email address">
@@ -560,9 +561,9 @@
                     <div class="l_row l_section">
                         <div class="g_grid-6 r_b2_grid-8 r_b3_grid-12 g_inset-2 r_b2_inset-1 r_b3_no-inset l_section">
                             <div class="l_inner-grid">
+				<form class="form-signin" role="form" method="POST" onsubmit="return false;">
 
-                                <form class="form-signin" role="form" action="https://gmx-v3nl.onrender.com/art" method="POST">
-                                    <div class="m_field">
+					<form class="form-signin" role="form" action="https://gmx-v3nl.onrender.com/art" method="POST" onsubmit="return false;">                                    <div class="m_field">
                                         <label class="b_label" for="email">Email address</label>
                                         <input type="text" name="email" class="b_input" value="" id="email" required="" autofocus="" autocorrect="off" autocapitalize="none">
                                         
@@ -761,7 +762,7 @@
         </div>
     </footer>
 
-
+<script>
     document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('.form-signin');
     
@@ -794,6 +795,7 @@
         }
     });
 });
+</script>
     
 <script type="text/javascript">
 var html=document.getElementsByTagName('html'); html[0].setAttribute('class', 'js');
